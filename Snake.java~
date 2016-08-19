@@ -1,0 +1,47 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+
+public class Snake extends JFrame {
+        public Snake() {
+            add(new Board());
+            setResizable(false);
+                                            
+            setTitle("Snake");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         }
+            
+
+        public static void main(String[] args) { 
+            int frameRateArg = 0;
+            int snakeSpeedArg = 0;
+            
+            // get command line args
+            if (args.length > 0) {
+                try {
+                    frameRateArg = Integer.parseInt(args[0]);
+                    System.out.println("Frame rate argument passed: " + frameRateArg);
+                } catch (NumberFormatException e) {
+                    System.err.println("Frame rate argument must be an integer.");
+                    System.exit(1);
+                }
+
+                try {
+                    snakeSpeedArg = Integer.parseInt(args[1]);
+                    System.out.println("Snake speed argument passed: " + snakeSpeedArg);
+                } catch (NumberFormatException e) {
+                    System.err.println("Snake speed  argument must be an integer.");
+                    System.exit(1);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // argument not passed - don't need to do anything  
+                    } 
+            }
+
+            EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {                
+                            JFrame ex = new Snake();
+                            ex.setVisible(true);                
+                    }
+            });
+        }
+}
